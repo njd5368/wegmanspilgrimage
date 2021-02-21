@@ -48,14 +48,17 @@
       }
 
       var map = new google.maps.Map(document.getElementById('map'), options);
-      //breaks here
-      var locations = {"stores":[{"number":1,"name":"JOHN GLENN","type":"Wegmans Store","latitude":43.13316,"longitude":-76.2232,"_links":[{"href":"/stores/1?api-version=2018-10-18","rel":"self","type":"GET"}]}]};
-      for(i=0; i<locations.stores.length; ++i) {
-        addMarker({lat:locations.stores[i].latitude, lng:locations.stores[i].longitude});
-      }
-      //works again here
+      fetch("https://api.wegmans.io/stores?Subscription-Key=3ff6f709216b4208b6ce0d1d9f0a3ef8&api-version=2018-10-18")
+        .then(function (response) {
+          return response.json();
+        })
+        .then(function (locations) {
+          for(i=0; i<locations.stores.length; ++i) {
+            addMarker({lat:locations.stores[i].latitude, lng:locations.stores[i].longitude});
+          }
+        })
+
     function addMarker(coords){
-      console.log(coords);
       var marker = new google.maps.Marker({
         position:coords,
         map:map
