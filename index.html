@@ -3,9 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="main.css">
     <title>Wegmans Pilgrimage</title>
-</head>
-<body>
+    <style>
+      #map{
+        height:600px;
+        width:100%;
+      }
+    </style>
+  <!--  <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script> -->
 
+
+</head>
+
+<body>
+  <section>
+  <h1> Wegman's Pilgrimage</h1>
+  <h3>Join the pillaging. Consume food. </h3>
+  <div class="Wegmans">
+    <img src="refs/Wegmans.png" alt="">
+    <script async defer
+      var stores=$.getJSON("https://api.wegmans.io/stores?Subscription-Key=65f4a225d6bd43ab83a832f61378a2fe&api-version=2018-10-18")>
+    </script>
+
+  <h4>Locations in the following states: </h4>
+    <ul>
+      <li> New York </li>
+      <li> New Jersey </li>
+      <li> Maryland </li>
+      <li> Massachussetts </li>
+      <li> Pennsylvania </li>
+      <li> Virginia </li>
+      <li> North Carolina </li>
+    </ul>
+
+
+  <h4> Sponsored by Daneyy Weegman. </h4>
+  <div id="map"></div>
+  <script>
+    function initMap(){
+      var options = {
+        zoom:8,
+        center:{lat:43.1610,lng:-77.6109}
+      }
+
+      var map = new google.maps.Map(document.getElementById('map'), options);
+
+
+    }
+    addMarker({lat:43.1610,lng:-77.6109});
+    function addMarker(coords){
+      var marker = new google.maps.Marker({
+        position:coords,
+        map:map
+      });
+      //https://developers.google.com/maps/documentation/javascript/markers
+    }
+  </script>
+  <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDMM_sGe2Qcv0stvIswiTSTFCa54dYTsJQ&callback=initMap&libraries=&v=weekly">
+  </script>
+
+</section>
 </body>
+
+<footer>Brickhack 2021. Ardit Koti, Nicholas Deary, Alexandria Eddings. </footer>
 </html>
+--
+
+--
