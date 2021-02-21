@@ -48,17 +48,20 @@
       }
 
       var map = new google.maps.Map(document.getElementById('map'), options);
-      var stores = {"stores":[{"number":1,"name":"JOHN GLENN","type":"Wegmans Store","latitude":43.13316,"longitude":-76.2232,"_links":[{"href":"/stores/1?api-version=2018-10-18","rel":"self","type":"GET"}]}]};
-      for(i = 0; i < stores.stores.length; i++) {
-        addMarker({stores.stores[i].latitude, stores.stores[i].longitude});
+      //breaks here
+      var locations = {"stores":[{"number":1,"name":"JOHN GLENN","type":"Wegmans Store","latitude":43.13316,"longitude":-76.2232,"_links":[{"href":"/stores/1?api-version=2018-10-18","rel":"self","type":"GET"}]}]};
+      for(i=0; i<locations.stores.length; ++i) {
+        addMarker({lat:locations.stores[i].latitude, lng:locations.stores[i].longitude});
       }
+      //works again here
     function addMarker(coords){
+      console.log(coords);
       var marker = new google.maps.Marker({
         position:coords,
         map:map
       });
-      //https://developers.google.com/maps/documentation/javascript/markers
-      //
+
+      //3am mood
     }
   }
   </script>
@@ -71,6 +74,3 @@
 
 <footer>Brickhack 2021. Ardit Koti, Nicholas Deary, Alexandria Eddings. </footer>
 </html>
---
-
---
